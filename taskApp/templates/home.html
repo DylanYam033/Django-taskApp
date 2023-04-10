@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container py-5">
+    <section class="card d-block" id="cards">
+        <div class="text-center">
+            <img src="https://i.ibb.co/k2nC25X/3.jpg" alt="imagen" width="50%">
+        </div>
+        {% if user.is_authenticated %}
+            {% if user.username == "Wilson" or user.username == "Gustavo"%}
+                <h2 class="text-center">Hola, {{user.username}} SAPA</h2>
+                {% else %}
+                <h2 class="text-center">Hola, {{user.username}}</h2>
+            {% endif %}
+        {% endif %}
+        <div class="text-center mb-3">
+            <a href="/tasks" class="btn btn-primary">Ver Tareas</a>
+        </div>
+    </section>
+</main>
+
+    
+{% endblock content %}
+
+
+

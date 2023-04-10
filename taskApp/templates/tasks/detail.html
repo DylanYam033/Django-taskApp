@@ -1,0 +1,52 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    
+    <main class="container">
+        <section class="card d-block mt-5" id="cards">
+          <div class="row">
+            <div class="col-md-6 offset-md-4">
+              <h2 class="text-center mb-3 col-sm-9">{{task.title}}</h2>
+              {{error}} 
+              <form method="POST" class="text-center">
+                {% csrf_token %}
+                <div class="mb-3 col-sm-9">
+                  <label for="id_title">Titulo:</label>
+                  <input class="form-control" type="text" name="title" maxlength="100" id="id_title" value="{{task.title}}" required>
+                </div>
+      
+                <div class="mb-3 col-sm-9">
+                    <label for="id_description">Descripcion:</label>
+                    <textarea name="description" cols="40" rows="10" id="id_description">{{task.description}}</textarea>
+                  </div>
+      
+                <div class="mb-3 col-sm-9">
+                  <label for="id_priority">Priority:</label>
+                  <input type="checkbox" name="priority" id="id_priority" checked="">
+                </div>
+                <div class="text-center mb-3 col-sm-9">
+                  <button class="btn btn-primary">Editar</button>
+                </div>
+              </form>
+
+              <div class="text-center mb-3 col-sm-9">
+                  <form action="{% url 'completeTask' task.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-success">Completada</button>
+                </form>
+              </div>
+
+              <div class="text-center mb-3 col-sm-9">
+                <form action="{% url 'deleteTask' task.id %}" method="POST">
+                  {% csrf_token %}
+                  <button class="btn btn-danger">Borrar</button>
+              </form>
+            </div>
+              
+            </div>
+          </div>
+        </section>
+      </main>
+    
+
+{% endblock content %}

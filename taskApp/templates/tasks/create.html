@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    <main class="container">
+        <section class="card d-block mt-5" id="cards">
+          <div class="row">
+            <div class="col-md-6 offset-md-4">
+              <form action="/createTask/" method="POST" class="text-center">
+                <h1 class="mb-3 col-sm-9">Crear nueva Tarea</h1>
+                {{error}} 
+                {% csrf_token %}
+      
+                <div class="mb-3 col-sm-9">
+                  <label for="id_title">Titulo:</label>
+                  <input class="form-control" type="text" name="title" maxlength="100" id="id_title" required>
+                </div>
+      
+                <div class="mb-3 col-sm-9">
+                    <label for="id_description">Descripcion:</label>
+                    <textarea name="description" cols="40" rows="10" id="id_description"></textarea>
+                  </div>
+      
+                <div class="mb-3 col-sm-9">
+                  <label for="id_priority">Priority:</label>
+                  <input type="checkbox" name="priority" id="id_priority" checked="">
+                </div>
+
+                
+                <div class="text-center mb-3 col-sm-9">
+                  <button class="btn btn-success">Guardar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main class="container">
+        <section class="card d-block mt-5" id="cards">
+            <div class="row">
+                <div class="col-md-6 offset-md-4">
+                    <h1 class="text-center mb-3 col-sm-9">Tareas Completadas</h1>
+                    {{message}}
+                    {% for task in tasks%}
+                        <ul class="list-group">
+                            <li class="">
+                                <h2 class="text-center mb-3 col-sm-9">{{task.title}}</h2>
+                                <p class="text-center mb-3 col-sm-9">{{task.description}}</p>
+                                <h4 class="text-center mb-3 col-sm-9">Completada:</h4>
+                                <p class="text-center mb-3 col-sm-9">{{task.dateCompleted}}</p>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                    <div class="text-center mb-3 col-sm-9">
+                        <a href="/createTask/" class="btn btn-info">Nueva Tarea</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}

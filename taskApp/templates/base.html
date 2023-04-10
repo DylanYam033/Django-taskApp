@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href={% static 'styles.css' %}>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Task App</title>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <input type="checkbox" id="nav-check" />
+
+        <div class="nav-header">
+          <div class="nav-title">Task App</div>
+        </div>
+
+        <div class="nav-btn" data-toggle="collapse" data-target="#cards" onclick="toggleTarjeta()">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        
+        <script>
+          function toggleTarjeta() {
+            var tarjeta = document.getElementById("cards");
+            if (tarjeta.classList.contains("d-block")) {
+              tarjeta.classList.remove("d-block");
+              tarjeta.classList.add("d-none");
+            } else {
+              tarjeta.classList.remove("d-none");
+              tarjeta.classList.add("d-block");
+            }
+          }
+        </script>
+
+        <div class="nav-links">
+          <a href="/home">Inicio</a>
+
+          {% if user.is_authenticated %}
+
+          <a href="/tasks">Tareas Pendientes</a>
+
+          <a href="{% url 'tasksCompleted' %}">Tareas Completadas</a>
+
+          <a href="/logout">Logout</a>
+
+          {% else %}
+
+          <a href="/singup">SingUp</a>
+
+          <a href="/login">Login</a>
+
+          {% endif %}
+        </div>
+      </div>
+    </header>
+    {% block content %} {% endblock content %}
+  </body>
+</html>

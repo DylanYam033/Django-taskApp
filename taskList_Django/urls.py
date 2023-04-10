@@ -4,7 +4,7 @@ from taskApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('singup/', views.singup, name='singup'),
     path('tasks/', views.tasks, name='tasks'),
     path('tasks_completed/', views.tasksCompleted, name='tasksCompleted'),
